@@ -1,5 +1,6 @@
 #pragma once
-#include "GameObject.h"
+#include "Player.h"
+#include <conio.h>
 
 enum STATES {MAIN_MENU, PLAYING, PAUSE};
 
@@ -9,11 +10,16 @@ private:
 	bool gameOver = false;
 	STATES state = PLAYING;
 
+	//creating objects
+	Player* player;
 public:
-	//update and render
-	void render(GameObject*);
-	void update(GameObject*);
+	//constructors
+	GAME_STATE();
 
+	//update and render
+	void update();
+	void render();
+	
 	//getters
 	bool isOver();
 	STATES getGameState();

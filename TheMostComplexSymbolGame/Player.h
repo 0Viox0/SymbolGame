@@ -1,5 +1,4 @@
 #pragma once
-#include "GameObject.h"
 #include "generalStruct.h"
 
 //trying create stickman art
@@ -52,19 +51,27 @@ private:
     Coords coord;
     DIRECTION dir;
 
+    bool playerUpdated;
+
     //draw funcions
     void drawLeft();
     void drawRight();
     void drawUp();
     void drawDown();
+
+    void clearPrevPlayerDrawing();
 public:
     Player();
 
    
     //------------------------------
 
-    void update(Coords&, DIRECTION&);
+    void updateMovement(const Coords&, const DIRECTION&);
     void render();
 
+    //getters
+    Coords getCoords();
   
+    //setters
+    void setPlayerUpdated(const bool& value);
 };

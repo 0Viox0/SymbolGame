@@ -7,6 +7,8 @@ Player::Player()
 	coord.y = 5;
 
 	dir = DOWN;
+
+	playerUpdated = true;
 }
 
 //draw funcions
@@ -98,28 +100,96 @@ void Player::drawDown()
 	gotoxy(coord.x + 2, coord.y + 4); cout << "|";	// |
 }
 
-//update and render
-void Player::update(Coords& coo, DIRECTION& dir)
+void Player::clearPrevPlayerDrawing()
 {
+	if (dir == UP)
+	{
+		for (int i = 1; i <= 5; i++)
+		{
+			gotoxy(coord.x, coord.y + i); cout << " ";
+			gotoxy(coord.x + 1, coord.y + i); cout << " ";
+			gotoxy(coord.x + 2, coord.y + i); cout << " ";
+			gotoxy(coord.x + 3, coord.y + i); cout << " ";
+			gotoxy(coord.x + 4, coord.y + i); cout << " ";
+		}
+	}
+	else if (dir == DOWN)
+	{
+		for (int i = - 1; i <= 5; i++)
+		{
+			gotoxy(coord.x, coord.y + i); cout << " ";
+			gotoxy(coord.x + 1, coord.y + i); cout << " ";
+			gotoxy(coord.x + 2, coord.y + i); cout << " ";
+			gotoxy(coord.x + 3, coord.y + i); cout << " ";
+			gotoxy(coord.x + 4, coord.y + i); cout << " ";
+		}
+	}
+	else if (dir == LEFT)
+	{
+		for (int i = 0; i <= 5; i++)
+		{
+			gotoxy(coord.x, coord.y + i); cout << " ";
+			gotoxy(coord.x + 1, coord.y + i); cout << " ";
+			gotoxy(coord.x + 2, coord.y + i); cout << " ";
+			gotoxy(coord.x + 3, coord.y + i); cout << " ";
+			gotoxy(coord.x + 4, coord.y + i); cout << " ";
+			gotoxy(coord.x + 5, coord.y + i); cout << " ";
+		}
+	}
+	else if (dir == RIGHT)
+	{
+		for (int i = 0; i <= 5; i++)
+		{
+			gotoxy(coord.x - 1, coord.y + i); cout << " ";
+			gotoxy(coord.x, coord.y + i); cout << " ";
+			gotoxy(coord.x + 1, coord.y + i); cout << " ";
+			gotoxy(coord.x + 2, coord.y + i); cout << " ";
+			gotoxy(coord.x + 3, coord.y + i); cout << " ";
+			gotoxy(coord.x + 4, coord.y + i); cout << " ";
+		}
+	}
+	
+}
+
+//update and render
+void Player::updateMovement(const Coords& coo, const DIRECTION& newDir)
+{
+	playerUpdated = true;
 	coord = coo;
+	dir = newDir;
 }
 
 
 void Player::render()
 {
-	switch (dir)
+	if (playerUpdated)
 	{
-	case UP:
-		drawUp();
-		break;
-	case DOWN:
-		drawDown();
-		break;
-	case LEFT:
-		drawLeft();
-		break;
-	case RIGHT:
-		drawRight();
-		break;
+		clearPrevPlayerDrawing();
+
+		switch (dir)
+		{
+		case UP:
+			drawUp();
+			break;
+		case DOWN:
+			drawDown();
+			break;
+		case LEFT:
+			drawLeft();
+			break;
+		case RIGHT:
+			drawRight();
+			break;
+		}
+
+		playerUpdated = false;
 	}
+	
 }
+
+//getters:
+
+Coords Player::getCoords() { return coord; }
+
+//setters:
+void Player::setPlayerUpdated(const bool& value) { playerUpdated = value; }
