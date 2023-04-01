@@ -18,9 +18,24 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GAME_STATE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="generalStruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GAME_STATE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="generalStruct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
